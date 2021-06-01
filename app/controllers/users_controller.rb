@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :logged_in_user, only: %i[ edit update]
-  before_action :correct_user,   only: %i[ edit update]
+  before_action :logged_in_user, only: %i[ edit update destroy]
+  before_action :correct_user,   only: %i[ edit update destroy]
 
   # GET /users or /users.json
   def index
@@ -50,10 +50,9 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    log_out
+    flash[:success] = "ユーザ情報を削除しました"
+    redirect_to login_url
   end
 
   private
