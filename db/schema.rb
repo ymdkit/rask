@@ -27,4 +27,5 @@ ActiveRecord::Schema.define(version: 2021_06_01_013422) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "tasks", "users", on_delete: :cascade
 end
