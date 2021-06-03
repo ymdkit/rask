@@ -25,7 +25,8 @@ class TasksController < ApplicationController
     @task = current_user.tasks.build(task_params)
 
     if @task.save
-      redirect_to @task
+      flash[:success] = "タスクを追加しました"
+      redirect_to tasks_path
     else
       redirect_to 'new'
     end
@@ -34,7 +35,8 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     if @task.update(task_params)
-      redirect_to tasks_url
+      flash[:success] = "タスクを更新しました"
+      redirect_to tasks_path
     else
       render "edit"
     end
