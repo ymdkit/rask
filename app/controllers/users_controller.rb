@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in(@user)
       flash[:success] = "ユーザ登録が完了しました"
-      redirect_to @user
+      redirect_to tasks_path
     else
       render 'new'
     end

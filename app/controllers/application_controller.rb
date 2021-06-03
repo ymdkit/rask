@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # ユーザーのログインを確認する
   def logged_in_user
     unless logged_in?
-      flash[:danger] = "その操作にはログインが必要です"
+      flash[:danger] = "この操作にはログインが必要です"
       redirect_to login_url
     end
   end
