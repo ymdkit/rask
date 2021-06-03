@@ -1,17 +1,19 @@
-<h1>Sessions#new</h1>
+<%= render 'layouts/h1', title: "ログイン" %>
 <div>
   <div>
     <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+      <div class="py-2">
+        <%= f.label :email, "メールアドレス", class: "text-xl block font-bold mb-2" %>
+        <%= f.email_field :email, class: "border-2 w-full p-1" %>
+      </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+      <div class="py-2">
+        <%= f.label :password, "パスワード", class: "text-xl block font-bold mb-2" %>
+        <%= f.password_field :password, class: "border-2 w-full p-1" %>
+      </div>
 
-      <%= f.submit "Log in" %>
+      <%= f.submit "ログイン", class: "bg-red-400 p-2 text-white rounded w-full" %>
     <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
   </div>
 </div>
