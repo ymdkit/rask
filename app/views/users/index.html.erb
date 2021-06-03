@@ -9,7 +9,7 @@
     <div class="flex-1"></div>
     <% if logged_in?  && current_user?(user) %>
       <%= link_to '編集', edit_user_path(user) %>
-      <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to '削除', user, method: :delete, data: { confirm: '退会しますか？' } %>
     <% end %>
   </div>
 <% end %>

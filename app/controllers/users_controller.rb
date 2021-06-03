@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+        format.html { redirect_to @user, notice: "ユーザ情報を更新しました" }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     log_out
-    flash[:success] = "ユーザ情報を削除しました"
+    flash[:success] = "退会しました"
     redirect_to login_url
   end
 
