@@ -13,7 +13,9 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message) %>
+      <p class="m-3 p-3 bg-blue-400 text-white rounded">
+        <%= message %>
+      </p>
     <% end %>
     <div class="flex">
       <div class="w-1/4 p-3">
