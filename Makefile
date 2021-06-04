@@ -3,6 +3,7 @@ up:
 
 setup:
 	docker-compose exec myapp bash -c 'bundle install'
+	docker-compose exec myapp bash -c 'bundle exec rails webpacker:install '
 	docker-compose exec myapp bash -c 'bundle exec rails db:migrate'
 
 start:
