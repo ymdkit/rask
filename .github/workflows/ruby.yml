@@ -19,7 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.0.0']
+        ruby-version: [3.0.0]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -31,12 +32,9 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Install Node.js and Yarn
-      run: |
-        curl https://deb.nodesource.com/setup_12.x | bash
-        curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-        apt-get update -qq && apt-get install -y nodejs yarn
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     - name: Set up webpack
       run: bundle exec rails webpacker:install
     - name: Set up database
