@@ -19,7 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.6', '2.7', '3.0']
+        ruby-version: [3.0.0]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -31,5 +32,12 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Set up webpack
+      run: bundle exec rails webpacker:install
+    - name: Set up database
+      run: bundle exec rails db:migrate
     - name: Run tests
       run: bundle exec rails test
