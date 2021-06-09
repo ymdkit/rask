@@ -33,13 +33,10 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Install Node.js and Yarn
       run: |
-        # https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions
-        curl -sL https://deb.nodesource.com/setup_12.x | bash -
-        apt-get install -y nodejs
-        # https://classic.yarnpkg.com/en/docs/install#debian-stable
-        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+        curl https://deb.nodesource.com/setup_12.x | bash
+        curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-        apt update && apt install yarn
+        apt-get update -qq && apt-get install -y nodejs yarn
     - name: Set up webpack
       run: bundle exec rails webpacker:install
     - name: Set up database
