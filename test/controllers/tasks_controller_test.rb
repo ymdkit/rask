@@ -3,6 +3,8 @@ require "test_helper"
 class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @task = tasks(:one)
+    @user = users(:one)
+    @task.user = @user
   end
 
   test "should get index" do
@@ -11,34 +13,39 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    log_in_as(@user)
     get new_task_url
     assert_response :success
   end
 
   test "should create task" do
+    log_in_as(@user)
     assert_difference('Task.count') do
       post tasks_url, params: { task: { content: @task.content, user_id: @task.user_id } }
     end
 
-    assert_redirected_to task_url(Task.last)
+    assert_redirected_to tasks_url
   end
 
-  test "should show task" do
-    get task_url(@task)
-    assert_response :success
+  test "should redirect edit to login" do
+    get edit_task_url(@task)
+    assert_redirected_to login_path
   end
 
   test "should get edit" do
+    log_in_as(users(:one))
     get edit_task_url(@task)
     assert_response :success
   end
 
   test "should update task" do
+    log_in_as(@user)
     patch task_url(@task), params: { task: { content: @task.content, user_id: @task.user_id } }
-    assert_redirected_to task_url(@task)
+    assert_redirected_to tasks_url
   end
 
   test "should destroy task" do
+    log_in_as(users(:one))
     assert_difference('Task.count', -1) do
       delete task_url(@task)
     end
