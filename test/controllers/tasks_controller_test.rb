@@ -18,6 +18,11 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should redirect new to login" do
+    get new_task_url
+    assert_redirected_to login_path
+  end
+
   test "should create task" do
     log_in_as(@user)
     assert_difference('Task.count') do
@@ -25,6 +30,11 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to tasks_url
+  end
+
+  test "should redirect create to login" do
+    post tasks_url, params: { task: { content: @task.content, user_id: @task.user_id } }
+    assert_redirected_to login_path
   end
 
   test "should redirect edit to login" do
@@ -44,6 +54,11 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to tasks_url
   end
 
+  test "should redirect update to login" do
+    patch task_url(@task), params: { task: { content: @task.content, user_id: @task.user_id } }
+    assert_redirected_to login_path
+  end
+
   test "should destroy task" do
     log_in_as(users(:one))
     assert_difference('Task.count', -1) do
@@ -51,5 +66,10 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to tasks_url
+  end
+
+  test "should redirect destroy to login" do
+    delete task_url(@task)
+    assert_redirected_to login_path
   end
 end
