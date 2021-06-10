@@ -9,7 +9,7 @@
     <div>
       <p class="text-xl"><%= task.content %></p>
       <p><%= link_to task.user.name, task.user %></p>
-      <p><%= ((task.created_at - Time.zone.now)/60/60/24).abs.round %>日前</p>
+      <p><%= task.show_days_ago %></p>
     </div>
     <div class="flex-1"></div>
     <% if logged_in? %>
