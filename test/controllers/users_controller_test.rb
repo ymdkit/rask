@@ -34,10 +34,20 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should redirect edit to login" do
+    get edit_user_url(@user)
+    assert_redirected_to login_path
+  end
+
   test "should update user" do
     log_in_as(@user)
     patch user_url(@user), params: { user: { email: @user.email, name: @user.name, password_digest: @user.password_digest } }
     assert_redirected_to user_url(@user)
+  end
+
+  test "should redirect update to login" do
+    patch user_url(@user), params: { user: { email: @user.email, name: @user.name, password_digest: @user.password_digest } }
+    assert_redirected_to login_path
   end
 
   test "should destroy user" do
@@ -47,5 +57,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to login_url
+  end
+
+  test "should redirect destroy to login" do
+    delete user_url(@user)
+    assert_redirected_to login_path
   end
 end
