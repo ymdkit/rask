@@ -14,7 +14,10 @@ ActiveRecord::Schema.define(version: 2021_06_01_013422) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
+    t.integer "creator_id"
+    t.datetime "due_at"
+    t.integer "assigner_id"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -27,5 +30,5 @@ ActiveRecord::Schema.define(version: 2021_06_01_013422) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "tasks", "users", on_delete: :cascade
+  add_foreign_key "tasks", "users", column: "creator_id", on_delete: :cascade
 end
