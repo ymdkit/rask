@@ -13,6 +13,9 @@
     
     # サーバ起動
     make start
+    
+    # テスト実行
+    make rails-test
 ```
 
 ## 機能

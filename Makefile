@@ -15,3 +15,6 @@ myapp:
 
 down:
 	docker-compose down --rmi all --volumes
+
+rails-test:
+	docker-compose exec myapp bundle exec rails test
