@@ -1,12 +1,32 @@
-<p>
-  <strong>Content:</strong>
+<head>
+<style>
+  div {
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+
+<%= render 'layouts/h1', title: "タスク詳細" %>
+
+<div>
+  <p class="text-xl block font-bold mb-2">担当者</p>
+  <%= link_to @task.assigner.name, @task.assigner %>
+</div>
+
+<div>
+  <p class="text-xl block font-bold mb-2">期限</p>
+  <%= @task.due_at %>
+</div>
+
+<div>
+  <p class="text-xl block font-bold mb-2">内容</p>
   <%= @task.content %>
-</p>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= link_to @task.user.name, @task.user %>
-</p>
+<div>
+  <p class="text-xl block font-bold mb-2">説明</p>
+  <%= @task.description %>
+</div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to '編集', edit_task_path(@task) %> |
+<%= link_to '戻る', tasks_path %>

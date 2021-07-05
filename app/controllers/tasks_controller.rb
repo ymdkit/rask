@@ -26,11 +26,11 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
 
-    if @task.save
+    if @task.save!
       flash[:success] = "タスクを追加しました"
       redirect_to tasks_path
     else
-      redirect_to 'new'
+      redirect_back fallback_location: new_task_path
     end
   end
 
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
       flash[:success] = "タスクを更新しました"
       redirect_to tasks_path
     else
-      render "edit"
+      redirect_back fallback_location: edit_task_path(@task)
     end
   end
 
