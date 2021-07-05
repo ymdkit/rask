@@ -26,14 +26,14 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "should create task" do
     log_in_as(@user)
     assert_difference('Task.count') do
-      post tasks_url, params: { task: { content: @task.content, user_id: @task.user_id } }
+    post tasks_url, params: { task: { content: @task.content, creator_id: @task.creator_id, assigner_id: @task.assigner_id , due_at: @task.due_at, description: @task.description} }
     end
 
     assert_redirected_to tasks_url
   end
 
   test "should redirect create to login" do
-    post tasks_url, params: { task: { content: @task.content, user_id: @task.user_id } }
+    post tasks_url, params: { task: { content: @task.content, creator_id: @task.creator_id, assigner_id: @task.assigner_id , due_at: @task.due_at, description: @task.description} }
     assert_redirected_to login_path
   end
 
@@ -50,12 +50,12 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should update task" do
     log_in_as(@user)
-    patch task_url(@task), params: { task: { content: @task.content, user_id: @task.user_id } }
+    patch task_url(@task), params: { task: { content: @task.content, creator_id: @task.creator_id } }
     assert_redirected_to tasks_url
   end
 
   test "should redirect update to login" do
-    patch task_url(@task), params: { task: { content: @task.content, user_id: @task.user_id } }
+    patch task_url(@task), params: { task: { content: @task.content, creator_id: @task.creator_id } }
     assert_redirected_to login_path
   end
 
