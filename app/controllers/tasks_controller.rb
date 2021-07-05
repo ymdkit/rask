@@ -14,10 +14,12 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+    @users = User.all
   end
 
   # GET /tasks/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /tasks or /tasks.json
@@ -28,7 +30,7 @@ class TasksController < ApplicationController
       flash[:success] = "タスクを追加しました"
       redirect_to tasks_path
     else
-      redirect_to 'new'
+      redirect_back fallback_location: new_task_path
     end
   end
 
@@ -38,7 +40,7 @@ class TasksController < ApplicationController
       flash[:success] = "タスクを更新しました"
       redirect_to tasks_path
     else
-      render "edit"
+      redirect_back fallback_location: edit_task_path(@task)
     end
   end
 
@@ -60,6 +62,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:assigner_id, :due_at, :content, :description)
   end
 end
