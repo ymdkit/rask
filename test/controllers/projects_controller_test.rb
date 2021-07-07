@@ -14,6 +14,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    log_in_as(@user)
     get new_project_url
     assert_response :success
   end
@@ -34,16 +35,19 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
+    log_in_as(@user)
     get edit_project_url(@project)
     assert_response :success
   end
 
   test "should update project" do
+    log_in_as(@user)
     patch project_url(@project), params: { project: { name: @project.name, user_id: @project.user_id } }
     assert_redirected_to project_url(@project)
   end
 
   test "should destroy project" do
+    log_in_as(@user)
     assert_difference('Project.count', -1) do
       delete project_url(@project)
     end

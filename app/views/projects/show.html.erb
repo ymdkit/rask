@@ -1,14 +1,30 @@
-<p id="notice"><%= notice %></p>
+<style>
+  div {
+    margin-bottom: 20px;
+  }
+</style>
+</head>
 
-<p>
-  <strong>Name:</strong>
+<%= render 'layouts/h1', title: "プロジェクト詳細" %>
+
+<div>
+  <p class="text-xl block font-bold mb-2">作成者</p>
+  <%= link_to @project.user.name, @project.user %>
+</div>
+
+<div>
+  <p class="text-xl block font-bold mb-2">プロジェクト名</p>
   <%= @project.name %>
-</p>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user.name %>
-</p>
+<div>
+  <p class="text-xl block font-bold mb-2">タスク一覧</p>
+  <% @project.tasks.each do |task| %>
+   <p><%= link_to task.content, tasks_path %></p>
+  <% end %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+</div>
+
+
+<%= link_to '編集', edit_project_path(@project) %> |
+<%= link_to '戻る', projects_path %>
