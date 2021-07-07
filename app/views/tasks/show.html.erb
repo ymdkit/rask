@@ -1,29 +1,21 @@
-<head>
-<style>
-  div {
-    margin-bottom: 20px;
-  }
-</style>
-</head>
-
 <%= render 'layouts/h1', title: "タスク詳細" %>
 
-<div>
+<div class="my-3">
   <p class="text-xl block font-bold mb-2">担当者</p>
   <%= link_to @task.assigner.name, @task.assigner %>
 </div>
 
-<div>
+<div class="my-3">
   <p class="text-xl block font-bold mb-2">期限</p>
   <%= @task.due_at %>
 </div>
 
-<div>
+<div class="my-3">
   <p class="text-xl block font-bold mb-2">内容</p>
   <%= @task.content %>
 </div>
 
-<div>
+<div class="my-3">
   <p class="text-xl block font-bold mb-2">説明</p>
   <%= @task.description %>
 </div>
