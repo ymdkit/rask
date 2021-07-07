@@ -1,22 +1,20 @@
-<div class="my-5">
-  <div class="flex">
-    <%= render 'layouts/h1', title: "プロジェクト一覧" %>
-    <div class="flex-1"></div>
-    <%= link_to '新規作成', new_project_path, class: "my-auto text-white bg-red-400 rounded p-2" %>
-  </div>
-
-  <% @projects.each do |project| %>
-    <div class="p-3 my-3 border rounded flex space-x-4">
-      <div>
-        <p class="text-xl"><%= project.name %></p>
-        <p>タスク数 : <%= project.tasks.count %></p>
-      </div>
-      <div class="flex-1"></div>
-      <% if logged_in? %>
-        <%= link_to '詳細', project %>
-        <%= link_to '編集', edit_project_path(project) %>
-        <%= link_to '削除', project, method: :delete, data: { confirm: 'このプロジェクトを削除しますか？' } %>
-      <% end %>
-    </div>
-  <% end %>
+<div class="flex">
+  <%= render 'layouts/h1', title: "プロジェクト一覧" %>
+  <div class="flex-1"></div>
+  <%= link_to '新規作成', new_project_path, class: "my-auto text-white bg-red-400 rounded p-2" %>
 </div>
+
+<% @projects.each do |project| %>
+  <div class="p-3 my-3 border rounded flex space-x-4">
+    <div>
+      <p class="text-xl"><%= project.name %></p>
+      <p>タスク数 : <%= project.tasks.count %></p>
+    </div>
+    <div class="flex-1"></div>
+    <% if logged_in? %>
+      <%= link_to '詳細', project %>
+      <%= link_to '編集', edit_project_path(project) %>
+      <%= link_to '削除', project, method: :delete, data: { confirm: 'このプロジェクトを削除しますか？' } %>
+    <% end %>
+  </div>
+<% end %>
