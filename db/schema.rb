@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_023842) do
+ActiveRecord::Schema.define(version: 2021_06_01_013422) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_07_05_023842) do
     t.datetime "due_at"
     t.integer "assigner_id"
     t.text "description"
+    t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,7 +39,9 @@ ActiveRecord::Schema.define(version: 2021_07_05_023842) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "projects", "users"
   add_foreign_key "projects", "users", on_delete: :cascade
+  add_foreign_key "tasks", "projects", on_delete: :cascade
   add_foreign_key "tasks", "users", column: "assigner_id", on_delete: :cascade
   add_foreign_key "tasks", "users", column: "creator_id", on_delete: :cascade
 end

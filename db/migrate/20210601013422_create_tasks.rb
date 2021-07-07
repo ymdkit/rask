@@ -6,10 +6,11 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.datetime :due_at
       t.integer :assigner_id
       t.text :description
-
+      t.integer :project_id
       t.timestamps
     end
 
+    add_foreign_key :tasks, :projects, on_delete: :cascade
     add_foreign_key :tasks, :users, column: :creator_id, on_delete: :cascade
     add_foreign_key :tasks, :users, column: :assigner_id, on_delete: :cascade
   end

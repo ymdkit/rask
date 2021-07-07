@@ -1,3 +1,4 @@
+# coding: utf-8
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   before_action :logged_in_user, only: %i[ new create edit update destroy]
@@ -15,11 +16,13 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @users = User.all
+    @projects = Project.all
   end
 
   # GET /tasks/1/edit
   def edit
     @users = User.all
+    @projects = Project.all
   end
 
   # POST /tasks or /tasks.json
@@ -62,6 +65,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:assigner_id, :due_at, :content, :description)
+    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id)
   end
 end
