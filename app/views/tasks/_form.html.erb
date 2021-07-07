@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :project_id, "プロジェクト名", class: "text-xl block font-bold mb-2" %>
-    <%= form.select :project_id, project.map{ |p| [p.name, p.id] }, {},  class: "border-2 w-full" %>
+    <%= form.select :project_id, project.map{ |p| [p.name, p.id] }, { include_blank: true},  class: "border-2 w-full" %>
   </div>
 
   <div class="field">
