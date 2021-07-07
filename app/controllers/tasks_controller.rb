@@ -17,6 +17,11 @@ class TasksController < ApplicationController
     @task = Task.new
     @users = User.all
     @projects = Project.all
+
+    project_id = params[:project_id]
+    unless project_id.nil?
+      @task.project ||= Project.find(project_id)
+    end
   end
 
   # GET /tasks/1/edit
