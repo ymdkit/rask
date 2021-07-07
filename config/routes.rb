@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :tasks
   resources :users
 
-  get '/', to: redirect('/tasks')
+  get '/', to: redirect('/projects')
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

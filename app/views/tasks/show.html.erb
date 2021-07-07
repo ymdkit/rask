@@ -20,5 +20,10 @@
   <%= @task.description %>
 </div>
 
+<div class="my-3">
+  <p class="text-xl block font-bold mb-2">所属プロジェクト</p>
+  <%= link_to @task.project.name, @task.project %>
+</div>
+
 <%= link_to '編集', edit_task_path(@task) %> |
 <%= link_to '戻る', tasks_path %>
