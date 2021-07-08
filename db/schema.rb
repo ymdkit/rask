@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_06_01_013422) do
   add_foreign_key "projects", "users"
   add_foreign_key "projects", "users", on_delete: :cascade
   add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "projects", on_delete: :cascade
   add_foreign_key "tasks", "users", column: "assigner_id", on_delete: :cascade
   add_foreign_key "tasks", "users", column: "creator_id", on_delete: :cascade
 end
