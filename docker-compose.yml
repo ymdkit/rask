@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  myapp:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    working_dir: /app
+    tty: true

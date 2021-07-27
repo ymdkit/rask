@@ -6,11 +6,26 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <% flash.each do |message_type, message| %>
+      <p class="m-3 p-3 bg-blue-400 text-white rounded">
+        <%= message %>
+      </p>
+    <% end %>
+    <div class="flex">
+      <div class="w-1/4 p-3">
+        <%= render 'layouts/menu' %>
+      </div>
+      <div class="w-3/4">
+        <div class="container mx-auto max-w-5xl p-5">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

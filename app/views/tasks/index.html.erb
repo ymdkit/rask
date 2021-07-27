@@ -1,0 +1,24 @@
+<div class="flex">
+  <%= render 'layouts/h1', title: "タスク一覧" %>
+  <div class="flex-1"></div>
+  <%= link_to '新規作成', new_task_path, class: "my-auto text-white bg-red-400 rounded p-2" %>
+</div>
+
+<% @tasks.each do |task| %>
+  <div class="p-3 my-3 border rounded flex space-x-4">
+    <div>
+      <p class="text-xl"><%= task.content %></p>
+      <p>担当者: <%= link_to task.assigner.name, task.assigner %></p>
+      <% if task.project %>
+        <p>所属プロジェクト: <%= link_to task.project.name, task.project %></p>
+      <% end %>
+      <p><%= task.show_days_ago %></p>
+    </div>
+    <div class="flex-1"></div>
+    <% if logged_in? %>
+      <%= link_to '詳細', task %>
+      <%= link_to '編集', edit_task_path(task) %>
+      <%= link_to '削除', task, method: :delete, data: { confirm: 'このタスクを削除しますか？' } %>
+    <% end %>
+  </div>
+<% end %>

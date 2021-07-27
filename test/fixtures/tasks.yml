@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  creator_id: 1
+  assigner_id : 1
+  due_at : 2021-07-16 12:22:22
+  description: test
+  project_id : 1
+
+two:
+  content: MyText
+  creator_id: 2
+  assigner_id : 1
+  due_at : 2021-07-16 12:22:22
+  description: test
+  project_id : 2
