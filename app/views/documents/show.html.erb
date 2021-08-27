@@ -1,0 +1,15 @@
+<%= render 'layouts/h1', title: @document.content %>
+
+<div class="my-3">
+  <p class="text-xl">
+    <%= @document.start_at.strftime('%Y-%m-%d %H:%M') %>
+    〜
+    <%= @document.end_at.strftime('%Y-%m-%d %H:%M') %>
+  <p class="text-xl">作成者:
+    <%= link_to @document.assigner.name, @document.assigner %>
+  <p class="text-xl">所属プロジェクト:
+    <%= link_to @document.project.name, @document.project %>
+  <p class="text-xl block font-bold mb-2">文書内容</p>
+    <%== JayFlavoredMarkdownConverter.new(@document.description).content %>
+  </p>
+</div>
