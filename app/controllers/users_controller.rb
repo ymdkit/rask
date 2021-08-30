@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user.destroy
     log_out
     flash[:success] = "退会しました"
-    redirect_to login_url
+    redirect_to projects_url
   end
 
   private
