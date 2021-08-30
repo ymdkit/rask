@@ -1,0 +1,9 @@
+<%= render 'layouts/h1', title: @tag.name %>
+
+<div>
+  <p class="text-xl block font-bold mb-2">タグ名</p>
+  <%= link_to @tag.name %>
+</div>
+
+<%= link_to '編集', edit_tag_path(@tag) %> |
+<%= link_to '戻る', tags_path %>

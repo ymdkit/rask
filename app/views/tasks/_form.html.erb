@@ -22,6 +22,11 @@
   </div>
 
   <div class="field my-4">
+    <%= form.label :tag_id, "タグ", class: "text-xl block font-bold mb-2" %>
+    <%= form.select :tag_id, @tags.map { |p| [p.name, p.id] }, { include_blank: true }, class: "border-2 w-full" %>
+  </div>
+
+  <div class="field my-4">
     <%= form.label :due_at, "期限", class: "text-xl block font-bold mb-2" %>
     <%= form.datetime_field :due_at, class: "border-2 w-full" %>
   </div>

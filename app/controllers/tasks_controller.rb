@@ -17,6 +17,7 @@ class TasksController < ApplicationController
     @task = Task.new
     @users = User.all
     @projects = Project.all
+    @tags = Tag.all
 
     project_id = params[:project_id]
     unless project_id.nil?
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
   def edit
     @users = User.all
     @projects = Project.all
+    @tags = Tag.all
   end
 
   # POST /tasks or /tasks.json
@@ -70,6 +72,7 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id)
+    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id, :tag_id)
   end
+
 end

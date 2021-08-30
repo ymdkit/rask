@@ -11,6 +11,11 @@
 </div>
 
 <div class="my-3">
+  <p class="text-xl block font-bold mb-2">タグ</p>
+  <%= link_to @task.tag.name, @task.tag %><br>
+</div>
+
+<div class="my-3">
   <p class="text-xl block font-bold mb-2">説明</p>
   <%= @task.description %>
 </div>
