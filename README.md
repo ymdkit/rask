@@ -18,6 +18,10 @@
     make rails-test
 ```
 
+ログイン機能のセットアップ
+- 環境変数管理用ファイルをコピー `cp .env.example .env`
+- `GITHUB_CLIENT_ID`と `GITHUB_CLIENT_SECRET` を各自で準備して入力
+
 ## 機能
 
 - ユーザの登録，編集，削除
