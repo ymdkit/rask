@@ -3,20 +3,16 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      flash[:success] = "ログインに成功しました"
-      redirect_to users_path
-    else
-      flash.now[:danger] = 'メールアドレスかパスワードが間違っています'
-      render 'new'
-    end
+    auth = request.env["omniauth.auth"]
+
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
+    log_in user
+    redirect_to projects_url
   end
 
   def destroy
     log_out
-    redirect_to login_path
+    redirect_to projects_url
   end
 
 end
