@@ -1,0 +1,23 @@
+<div class="flex">
+  <%= render 'layouts/h1', title: "APIトークン一覧" %>
+  <div class="flex-1"></div>
+  <%= link_to '新規作成', new_api_token_path, class: "my-auto text-white bg-red-400 rounded p-2" %>
+</div>
+
+<% @api_tokens.each do |api_tokens| %>
+  <% if api_tokens.user_id == current_user.id %>
+    <div class="p-3 my-3 border rounded flex space-x-4">
+      <div>
+        <p> APIトークン: <%= api_tokens.secret %></p>
+        <p> トークン名: <%= api_tokens.description %></p>
+        <p> 有効期限: <%= api_tokens.expired_at %></p>
+      </div>
+      <div class="flex-1"></div>
+      <% if logged_in? %>
+        <%= link_to '詳細', api_tokens %>
+        <%= link_to '編集', edit_api_token_path(api_tokens) %>
+        <%= link_to '削除', api_tokens, method: :delete, data: { confirm: 'このAPIトークンを削除しますか？' } %>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
