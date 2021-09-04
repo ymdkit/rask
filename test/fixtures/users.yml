@@ -3,7 +3,7 @@
 one:
   id: 1
   name: MyString
-  screen_name: MyString
+  screen_name: MyString1
   avatar_url: hoge
   provider: github
   uid: 1
@@ -11,7 +11,7 @@ one:
 two:
   id: 2
   name: MyString
-  screen_name: MyString
+  screen_name: MyString2
   avatar_url: hoge
   provider: github
   uid: 2
