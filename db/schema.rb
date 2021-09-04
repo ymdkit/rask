@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_013422) do
+ActiveRecord::Schema.define(version: 2021_09_04_050454) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -34,12 +34,14 @@ ActiveRecord::Schema.define(version: 2021_06_01_013422) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "provider"
-    t.string "uid"
     t.string "screen_name"
-    t.string "avatar_url"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "avatar_url"
+    t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
   end
 
   add_foreign_key "projects", "users"
