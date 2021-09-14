@@ -5,6 +5,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     @task = tasks(:one)
     @user = users(:one)
     @task.user = @user
+    OmniAuth.config.test_mode = true
   end
 
   test "should get index" do
@@ -20,7 +21,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect new to login" do
     get new_task_url
-    assert_redirected_to login_path
+    assert_redirected_to projects_url
   end
 
   test "should create task" do
@@ -34,12 +35,12 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect create to login" do
     post tasks_url, params: { task: { content: @task.content, creator_id: @task.creator_id, assigner_id: @task.assigner_id , due_at: @task.due_at, description: @task.description} }
-    assert_redirected_to login_path
+    assert_redirected_to projects_url
   end
 
   test "should redirect edit to login" do
     get edit_task_url(@task)
-    assert_redirected_to login_path
+    assert_redirected_to projects_url
   end
 
   test "should get edit" do
@@ -56,7 +57,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect update to login" do
     patch task_url(@task), params: { task: { content: @task.content, creator_id: @task.creator_id } }
-    assert_redirected_to login_path
+    assert_redirected_to projects_url
   end
 
   test "should destroy task" do
@@ -70,6 +71,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect destroy to login" do
     delete task_url(@task)
-    assert_redirected_to login_path
+    assert_redirected_to projects_url
   end
 end

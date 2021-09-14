@@ -58,3 +58,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "tailwindcss-rails", "~> 0.3.3"
 gem 'rexml'
+gem 'omniauth'
+gem 'omniauth-github', github: 'omniauth/omniauth-github'
+gem "omniauth-github-team-member"
+gem "omniauth-rails_csrf_protection"
+gem 'dotenv-rails'
