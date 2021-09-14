@@ -4,7 +4,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            ENV['GITHUB_CLIENT_SECRET'],
            scope: 'read:org',
            teams: {
-             "active_member?" => ENV['ALLOWED_TEAM_ID']
+             "active_member?" => ENV['OAUTH_GITHUB_ALLOWED_TEAM_ID']
            },
            name: 'github'
 
