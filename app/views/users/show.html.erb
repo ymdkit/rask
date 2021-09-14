@@ -5,11 +5,6 @@
   <%= link_to @user.name %>
 </div>
 
-<div class="my-3">
-  <p class="text-xl block font-bold mb-2">メールアドレス</p>
-  <%= link_to @user.email %>
-</div>
-
 <div>
   <p class="text-xl block font-bold mb-2">APIトークン</p>
   <% @api_tokens.each do |api_token| %>
