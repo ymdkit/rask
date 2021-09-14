@@ -13,5 +13,30 @@
   <%= link_to @user.name %>
 </div>
 
-<%= link_to '編集', edit_user_path(@user) %> |
+<div>
+  <p class="text-xl block font-bold mb-2">メールアドレス</p>
+  <%= link_to @user.email %>
+</div>
+
+<%= link_to '編集', edit_user_path(@user) %>
+
+<div>
+  <p class="text-xl block font-bold mb-2">APIトークン</p>
+  <% @api_tokens.each do |api_token| %>
+    <% if api_token.user_id == current_user.id %>
+      <div class="p-3 my-3 border rounded flex space-x-3">
+        <div>
+          <p> APIトークン: <%= api_token.secret %></p>
+          <p> トークン名: <%= api_token.description %></p>
+          <p> 有効期限: <%= api_token.expired_at %></p>
+        </div>
+        <div class="flex-1">
+        </div>
+        <%= link_to '編集', edit_api_token_path(api_token) %>
+        <%= link_to '削除', api_token, method: :delete, data: { confirm: 'このAPIトークンを削除しますか？' } %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 <%= link_to '戻る', users_path %>
