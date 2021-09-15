@@ -20,7 +20,10 @@
 
 ログイン機能のセットアップ
 - 環境変数管理用ファイルをコピー `cp .env.example .env`
-- `GITHUB_CLIENT_ID`と `GITHUB_CLIENT_SECRET` を各自で準備して入力
+- https://github.com/settings/developers で OAuth App を作成
+  - Authorization callback URL に `http://localhost:3000/auth/github/callback` を設定する
+- 発行された `GITHUB_CLIENT_ID`と `GITHUB_CLIENT_SECRET` を `.env` に追記
+- `curl -u [your-github-account] https://api.github.com/orgs/nomlab/teams` を実行し，得られた team_id を `OAUTH_GITHUB_ALLOWED_ID` として `.env` に追記
 
 ## 機能
 
