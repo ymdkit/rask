@@ -5,6 +5,7 @@ class ApiTokensControllerTest < ActionDispatch::IntegrationTest
     @api_token = api_tokens(:one)
     @user = users(:one)
     @api_token.user = @user
+    OmniAuth.config.test_mode = true
   end
 
   test "should get index" do
