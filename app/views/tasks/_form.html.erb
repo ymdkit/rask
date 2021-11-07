@@ -27,6 +27,11 @@
   </div>
 
   <div class="field my-4">
+    <%= form.label :due_at, "状態", class: "text-xl block font-bold mb-2" %>
+    <%= form.select :task_state_id, @task_states.map { |p| [p.name, p.id] }, { include_blank: false }, class: "border-2 w-full"  %>
+  </div>
+
+  <div class="field my-4">
     <%= form.label :content, "内容", class: "text-xl block font-bold mb-2" %>
     <%= form.text_field :content, class: "border-2 w-full", placeholder: "タスクの内容を入力してください", required: true %>
   </div>
