@@ -5,6 +5,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     @project = projects(:one)
     @user = users(:one)
     @project.user = @user
+    OmniAuth.config.test_mode = true
   end
 
   test "should get index" do

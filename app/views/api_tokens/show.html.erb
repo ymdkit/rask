@@ -1,0 +1,16 @@
+<div class="my-3">
+  <p class="text-xl block font-bold mb-2">作成者</p>
+  <%= link_to @api_token.user.name %>
+
+  <p class="text-xl block font-bold mb-2">APIトークン</p>
+  <%= @api_token.secret %>
+
+  <p class="text-xl block font-bold mb-2">トークン名</p>
+  <%= @api_token.description %>
+
+  <p class="text-xl block font-bold mb-2">有効期限</p>
+  <%= @api_token.expired_at %>
+</div>
+
+<%= link_to '編集', edit_api_token_path(@api_token) %> |
+<%= link_to '戻る', api_tokens_path %>

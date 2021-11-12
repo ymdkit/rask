@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @api_tokens = ApiToken.all
   end
 
   # GET /users/new
@@ -52,7 +53,7 @@ class UsersController < ApplicationController
     @user.destroy
     log_out
     flash[:success] = "退会しました"
-    redirect_to login_url
+    redirect_to projects_url
   end
 
   private

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_051425) do
+ActiveRecord::Schema.define(version: 2021_09_04_050454) do
+
+  create_table "api_tokens", force: :cascade do |t|
+    t.string "secret"
+    t.string "description"
+    t.datetime "expired_at"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -42,12 +51,17 @@ ActiveRecord::Schema.define(version: 2021_08_27_051425) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "screen_name"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "avatar_url"
+    t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
   end
 
+  add_foreign_key "api_tokens", "users", on_delete: :cascade
   add_foreign_key "projects", "users"
   add_foreign_key "projects", "users", on_delete: :cascade
   add_foreign_key "tasks", "projects"
