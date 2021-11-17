@@ -18,27 +18,27 @@
 
   <div class="field my-4">
     <%= form.label :start_at, "開始時刻", class: "text-xl block font-bold mb-2" %>
-    <%= form.datetime_field :start_at, class: "border-2 w-full" %>
+    <%= form.datetime_field :start_at, class: "border-2 w-full", required: true%>
   </div>
   
   <div class="field my-4">
     <%= form.label :end_at, "終了時刻", class: "text-xl block font-bold mb-2" %>
-    <%= form.datetime_field :end_at, class: "border-2 w-full" %>
+    <%= form.datetime_field :end_at, class: "border-2 w-full", required: true %>
   </div>
   
   <div class="field my-4">
     <%= form.label :location, "場所", class: "text-xl block font-bold mb-2" %>
-    <%= form.text_field :location, class: "border-2 w-full" %>
+    <%= form.text_field :location, class: "border-2 w-full", required: true %>
   </div>
 
   <div class="field my-4">
     <%= form.label :assigner_id, "作成者", class: "text-xl block font-bold mb-2" %>
-    <%= form.select :assigner_id, @users.map { |u| [u.name, u.id] }, {}, class: "border-2 w-full" %>
+    <%= form.select :assigner_id, @users.map { |u| [u.name, u.id] }, {}, class: "border-2 w-full", required: true%>
   </div>
 
   <div class="field my-4">
     <%= form.label :project_id, "プロジェクト名", class: "text-xl block font-bold mb-2" %>
-    <%= form.select :project_id, @projects.map { |p| [p.name, p.id] }, { include_blank: true }, class: "border-2 w-full" %>
+    <%= form.select :project_id, @projects.map { |p| [p.name, p.id] }, { include_blank: true }, class: "border-2 w-full", required: true %>
   </div>
   
   <%# <ul class="nav nav-tabs" id="myTab" role="tablist"> %>
