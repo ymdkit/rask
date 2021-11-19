@@ -12,7 +12,10 @@
 
 <div class="my-3">
   <p class="text-xl block font-bold mb-2">タグ</p>
-  <%= link_to @task.tag.name, @task.tag %><br>
+  <% @task.tags.each do |tag| %>
+  <%= link_to tag.name, tag %>
+  <% end %>
+  <br>
 </div>
 
 <div class="my-3">

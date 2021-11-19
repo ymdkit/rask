@@ -35,6 +35,7 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = current_user.tasks.build(task_params)
+    parse_tag_names(params[:tag_names]) if params[:tag_names]
 
     if @task.save!
       flash[:success] = "タスクを追加しました"
@@ -46,6 +47,7 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
+    parse_tag_names(params[:tag_names]) if params[:tag_names]
     if @task.update(task_params)
       flash[:success] = "タスクを更新しました"
       redirect_to tasks_path
@@ -72,7 +74,18 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id, :tag_id)
+    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id)
   end
 
+  def parse_tag_names(tag_names)
+    tag_names.split.map do |tag_name|
+      tag = Tag.find_by(name: tag_name)
+      tag ? tag : Tag.create(name: tag_name)
+
+      if @task.tags.find_by(name: tag_name)
+      else
+        @task.tags << tag
+      end
+    end
+  end
 end
