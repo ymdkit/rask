@@ -6,7 +6,7 @@ class ApiTokensController < ApplicationController
 
   # GET /api_tokens or /api_tokens.json
   def index
-    @api_tokens = ApiToken.all.filter{|api_token| api_token.user == current_user}
+    @api_tokens = ApiToken.where(user: current_user)
   end
 
   # GET /api_tokens/1 or /api_tokens/1.json
