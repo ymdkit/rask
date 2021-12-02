@@ -2,12 +2,14 @@ require "test_helper"
 
 class TagsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @task = tasks(:one)
     @tag = tags(:one)
     @user = users(:one)
+    @task.user = @user
+    OmniAuth.config.test_mode = true
   end
 
   test "should get index" do
-    log_in_as(@user)
     get tags_url
     assert_response :success
   end
@@ -16,6 +18,11 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get new_tag_url
     assert_response :success
+  end
+
+  test "should redirect new to login" do
+    get new_task_url
+    assert_redirected_to projects_url
   end
 
   test "should create tag" do

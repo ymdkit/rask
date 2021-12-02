@@ -78,14 +78,9 @@ class TasksController < ApplicationController
   end
 
   def parse_tag_names(tag_names)
-    tag_names.split.map do |tag_name|
+    @task.tags = tag_names.split.map do |tag_name|
       tag = Tag.find_by(name: tag_name)
       tag ? tag : Tag.create(name: tag_name)
-
-      if @task.tags.find_by(name: tag_name)
-      else
-        @task.tags << tag
-      end
     end
   end
 end

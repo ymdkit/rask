@@ -79,10 +79,10 @@ setupTagForm = function(selector) {
   redisplay = function() {
     $('#current-tags').empty();
     return tags().map(function(tag_name) {
-      return $('#current-tags').append("<span class=\"label label-primary tag-label\">\n  <span class=\"glyphicon glyphicon-tag\" aria-hidden=\"true\"></span> " + tag_name + "\n  <span id=\"" + tag_name + "\" class=\"glyphicon glyphicon-remove remove-tag-icon\" aria-hidden=\"true\"></span></span>");
+      return $('#current-tags').append("<span class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\">\n" + tag_name + "\n  <span id=\"" + tag_name + "\"<button class=\"remove-tag\" type=\"button\"><svg class=\"h-5 w-5 text-white\"  width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">  <path stroke=\"none\" d=\"M0 0h24v24H0z\"/>  <line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\" />  <line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\" /></svg></button></span></span>");
     });
   };
-  $('#current-tags').on('click', '.remove-tag-icon', function(e) {
+  $('#current-tags').on('click', '.remove-tag', function(e) {
     remove_tag($(this).attr('id'));
     return redisplay();
   });
