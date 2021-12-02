@@ -13,6 +13,7 @@
         <p>所属プロジェクト: <%= link_to task.project.name, task.project %></p>
       <% end %>
       <p><%= task.show_days_ago %></p>
+      <P>状態: <%= task.state.name %></P>
     </div>
     <div class="flex-1"></div>
     <% if logged_in? %>

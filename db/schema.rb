@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_090334) do
+ActiveRecord::Schema.define(version: 2021_11_07_082503) do
 
   create_table "api_tokens", force: :cascade do |t|
     t.string "secret"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_09_10_090334) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "task_states", force: :cascade do |t|
+    t.string "name"
+    t.integer "priority"
+    t.string "about"
+    t.string "color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.text "content", null: false
     t.integer "creator_id"
@@ -52,7 +61,9 @@ ActiveRecord::Schema.define(version: 2021_09_10_090334) do
     t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "task_state_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["task_state_id"], name: "index_tasks_on_task_state_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_09_10_090334) do
   add_foreign_key "projects", "users", on_delete: :cascade
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "projects", on_delete: :cascade
+  add_foreign_key "tasks", "task_states"
   add_foreign_key "tasks", "users", column: "assigner_id", on_delete: :cascade
   add_foreign_key "tasks", "users", column: "creator_id", on_delete: :cascade
 end
