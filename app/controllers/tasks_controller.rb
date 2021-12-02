@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all.includes(:user)
+    @tasks = Task.all.includes(:user, :state)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -18,6 +18,7 @@ class TasksController < ApplicationController
     @users = User.all
     @projects = Project.all
     @tags = Tag.all
+    @task_states = TaskState.all
 
     project_id = params[:project_id]
     unless project_id.nil?
@@ -30,6 +31,7 @@ class TasksController < ApplicationController
     @users = User.all
     @projects = Project.all
     @tags = Tag.all
+    @task_states = TaskState.all
   end
 
   # POST /tasks or /tasks.json
@@ -74,7 +76,7 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id)
+    params.require(:task).permit(:assigner_id, :due_at, :content, :description, :project_id, :task_state_id)
   end
 
   def parse_tag_names(tag_names)
