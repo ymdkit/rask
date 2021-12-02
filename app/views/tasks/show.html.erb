@@ -11,6 +11,14 @@
 </div>
 
 <div class="my-3">
+  <p class="text-xl block font-bold mb-2">タグ</p>
+  <% @task.tags.each do |tag| %>
+  <%= tag_label(tag) %>
+  <% end %>
+  <br>
+</div>
+
+<div class="my-3">
   <p class="text-xl block font-bold mb-2">説明</p>
   <%= @task.description %>
 </div>
