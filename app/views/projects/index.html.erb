@@ -24,19 +24,30 @@
   </div>
 
   <div id="<%= "project-#{project.id}-tasks" %>" class="transition-accordion invisible leading-0 opacity-0 max-h-0 duration-500">
-    <% project.tasks.each do |task| %>
-      <div class="p-3 ml-5 my-3 border rounded flex space-x-4">
-        <div>
-          <p class="text-xl"><%= task.content %></p>
-          <p>担当者: <%= link_to task.assigner.name, task.assigner %></p>
-          <P>状態: <%= task.state.name %></P>
+    <% project.tasks.each_with_index do |task, index| %>
+      <div class="flex">
+        <div class="w-6">
+          <div class="h-1/2 border-r-2"></div>
+          <% if index < project.tasks.count - 1 %>
+            <div class="h-1/2 border-r-2"></div>
+          <% end %>
         </div>
-        <div class="flex-1"></div>
-        <% if logged_in? %>
-          <%= link_to '詳細', task %>
-          <%= link_to '編集', edit_task_path(task) %>
-          <%= link_to '削除', task, method: :delete, data: { confirm: 'このタスクを削除しますか？' } %>
-        <% end %>
+        <div class="w-6">
+          <div class="h-1/2 border-b-2"></div>
+        </div>
+        <div class="p-3 my-3 border rounded flex space-x-4 flex-1">
+          <div>
+            <p class="text-xl"><%= task.content %></p>
+            <p>担当者: <%= link_to task.assigner.name, task.assigner %></p>
+            <P>状態: <%= task.state.name %></P>
+          </div>
+          <div class="flex-1"></div>
+          <% if logged_in? %>
+            <%= link_to '詳細', task %>
+            <%= link_to '編集', edit_task_path(task) %>
+            <%= link_to '削除', task, method: :delete, data: { confirm: 'このタスクを削除しますか？' } %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
