@@ -8,9 +8,9 @@
   <div class="p-3 my-3 border rounded flex space-x-4">
     <div>
       <p class="text-xl"><%= document.content %></p>
-      <p>作成日: <%= document.created_at.strftime('%Y/%m/%d') %></p>
+      <p>作成日: <%= document.created_at&.strftime('%Y/%m/%d') %></p>
       <p>場所: <%= document.location %></p>
-      <p>作成者: <%= link_to document.assigner.name, document.assigner %></p>
+      <p>作成者: <%= link_to_if document.assigner&.name, document.assigner&.name, document.assigner %></p>
     </div>
     <div class="flex-1"></div>
     <% if logged_in? %>

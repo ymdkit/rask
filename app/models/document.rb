@@ -7,5 +7,5 @@ class Document < ApplicationRecord
   validates :start_at, presence: true
   validates :end_at, presence: true
   validates :location, presence: true
-  validates :project, presence: true
+  #validates :project, presence: true
 end

@@ -38,7 +38,7 @@
 
   <div class="field my-4">
     <%= form.label :project_id, "プロジェクト名", class: "text-xl block font-bold mb-2" %>
-    <%= form.select :project_id, @projects.map { |p| [p.name, p.id] }, { include_blank: true }, class: "border-2 w-full", required: true %>
+    <%= form.select :project_id, @projects.map { |p| [p.name, p.id] }, { include_blank: true }, class: "border-2 w-full", required: false %>
   </div>
   
   <%# <ul class="nav nav-tabs" id="myTab" role="tablist"> %>
