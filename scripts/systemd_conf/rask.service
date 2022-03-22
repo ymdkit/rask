@@ -1,0 +1,19 @@
+[Unit]
+Description=Rask: Task Management System
+Requires=docker.service
+After=docker.service
+
+[Service]
+# Change path to suit your environment
+WorkingDirectory=<Path to rask repository>
+ExecStart=<Path to rask repository>/scripts/rask-docker.sh start -p 3000
+ExecStop=<Path to rask repository>/scripts/rask-docker.sh stop
+
+# Change user who owns this repository
+User=rask
+
+Type=simple
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
