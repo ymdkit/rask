@@ -16,7 +16,7 @@ fi
 
 echo
 echo "Migrating database"
-if ! bundle exec rails db:migrate; then
+if ! bundle exec rails db:migrate RAILS_ENV="production"; then
     echo
     echo "Error:"
     echo "    Failed to migrate database"
