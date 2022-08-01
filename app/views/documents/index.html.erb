@@ -1,0 +1,22 @@
+<div class="flex">
+  <%= render 'layouts/h1', title: "文書一覧" %>
+  <div class="flex-1"></div>
+  <%= link_to '新規作成', new_document_path, class: "my-auto text-white bg-red-400 rounded p-2" %>
+</div>
+
+<% @documents.each do |document| %>
+  <div class="p-3 my-3 border rounded flex space-x-4">
+    <div>
+      <p class="text-xl"><%= document.content %></p>
+      <p>作成日: <%= document.created_at&.strftime('%Y/%m/%d') %></p>
+      <p>場所: <%= document.location %></p>
+      <p>作成者: <%= link_to_if document.assigner&.name, document.assigner&.name, document.assigner %></p>
+    </div>
+    <div class="flex-1"></div>
+    <% if logged_in? %>
+      <%= link_to '詳細', document %>
+      <%= link_to '編集', edit_document_path(document) %>
+      <%= link_to '削除', document, method: :delete, data: { confirm: 'この文書を削除しますか？' } %>
+    <% end %>
+  </div>
+<% end %>

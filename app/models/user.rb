@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_many :tasks, foreign_key: 'creator_id'
     has_many :projects
     has_many :api_tokens, foreign_key: 'user_id'
+    has_many :documents, foreign_key: 'creator_id'
 
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
