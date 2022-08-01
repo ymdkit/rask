@@ -18,6 +18,9 @@
         <%= link_to '削除', project, method: :delete, data: { confirm: 'このプロジェクトを削除しますか？' } %>
       <% end %>
     </div>
+    <div>
+      <p id="<%= "project-#{project.id}" %>" class="mt-3 text-center cursor-pointer bg-gray-100">+</p>
+    </div>
   </div>
 
   <div id="<%= "project-#{project.id}-tasks" %>" class="transition-accordion invisible leading-0 opacity-0 max-h-0 duration-500">
